@@ -8,7 +8,7 @@
   </head>
   <body>
     <canvas id="canvas"></canvas>
-    please enter the file <input type="file" id="input" onchange="convert()" /b>
+    please enter the file <input type="file" id="input" onchange="convert()" />
     <canvas id="canvas"> </canvas>
     <a id="a" href="" download>download</a>
   </body>
@@ -27,6 +27,7 @@
           var data = canvas.toDataURL("image/webp", 0.5);
           console.log(data);
           var a = document.getElementById("a");
+          a.href=data;
         };
         image.src = event.target.result;
       };
