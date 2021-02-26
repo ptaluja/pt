@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    please enter the file <input type="file" id="input" onchange="convert()" /b>
+    <canvas id="canvas"> </canvas>
+    <a id="a" href="" download>download</a>
+  </body>
+  <script>
+    function convert() {
+      var input = document.getElementById("input");
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        var image = new Image();
+        image.onload = function () {
+          canvas.width = image.width;
+          canvas.height = image.height;
+          ctx.drawImage(image, 0, 0);
+          var data = canvas.toDataURL("image/webp", 0.5);
+          console.log(data);
+          var a = document.getElementById("a");
+        };
+        image.src = event.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  </script>
+</html>
